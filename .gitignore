@@ -11,3 +11,4 @@ pom.xml.asc
 .hg/
 out/
 figwhee_server.log
+resources/public/cljs/
