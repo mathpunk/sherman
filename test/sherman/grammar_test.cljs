@@ -9,7 +9,7 @@
 
 
 (deftest test-helpers
-  (is (not (bracketed-in-hashes "hi"))))
+  (is (not (bracketed "hi"))))
 
 
 (s/def :sherman.grammar/expanding-symbol
