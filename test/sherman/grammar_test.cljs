@@ -1,15 +1,8 @@
 (ns sherman.grammar-test
-  (:require [cljs.test :refer-macros [is testing async]]
+  (:require [sherman.helpers :refer [bracketed]]
+            [cljs.test :refer-macros [is testing async]]
             [cljs.spec.alpha :as s]
             [devcards.core :refer-macros [deftest]]))
-
-
-(defn- bracketed [term]
-  (and (clojure.string/starts-with? term "#") (clojure.string/ends-with? term "#")))
-
-
-(deftest test-helpers
-  (is (not (bracketed "hi"))))
 
 
 (s/def :sherman.grammar/expanding-symbol
