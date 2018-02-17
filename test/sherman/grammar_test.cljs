@@ -7,7 +7,7 @@
   (is (= true true)))
 
 
-#_(s/def :sherman.grammar/expanding-symbol string?)
+(s/def :sherman.grammar/expanding-symbol string?)
 
 
 (deftest test-expanding-symbols
