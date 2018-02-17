@@ -1,13 +1,13 @@
 (ns sherman.grammar-test
-  (:require [sherman.helpers :refer [bracketed]]
+  (:require [sherman.helpers :as help]
             [cljs.test :refer-macros [is testing async]]
             [cljs.spec.alpha :as s]
             [devcards.core :refer-macros [deftest]]))
 
 
-(s/def :sherman.grammar/expanding-symbol
-  (s/and string?
-         #(bracketed %)))
+#_(s/def :sherman.grammar/expanding-symbol
+    (s/and string?
+           #(help/bracketed %)))
 
 
 (deftest test-expanding-symbols
