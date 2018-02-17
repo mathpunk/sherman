@@ -1,2 +1,3 @@
 (ns runners.tests
-  (:require [sherman.core-test]))
+  (:require [sherman.core-test]
+            [sherman.grammar-test]))
