@@ -7,7 +7,9 @@
   (is (= true true)))
 
 
-#_(deftest test-expansion-symbol
-    (is (s/valid? :server.sherman.grammar.core/expanding-symbol "#expanding#"))
-    (is (not (s/valid? :server.sherman.grammar.core/expanding-symbol "non-expanding")))
-    )
+#_(s/def :sherman.grammar/expanding-symbol string?)
+
+
+(deftest test-expanding-symbols
+  (is (s/valid? :sherman.grammar/expanding-symbol "#expands#")))
+
