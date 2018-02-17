@@ -1,4 +1,4 @@
-(ns clojurescript-tdd-application.core)
+(ns sherman.core)
 
 (defn main []
   (enable-console-print!)
