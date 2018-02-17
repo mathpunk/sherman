@@ -5,7 +5,7 @@
 
 
 (defn- bracketed [term]
-  (and (.startsWith term "#") (.endsWith term "#")))
+  (and (clojure.string/starts-with? term "#") (clojure.string/ends-with? term "#")))
 
 
 (deftest test-helpers
@@ -13,11 +13,12 @@
 
 
 (s/def :sherman.grammar/expanding-symbol
-  (s/and string?))
+  (s/and string?
+         #(bracketed %)))
 
 
 (deftest test-expanding-symbols
   (is (s/valid? :sherman.grammar/expanding-symbol "#expands#"))
   (is (not (s/valid? :sherman.grammar/expanding-symbol "non-expanding")))
-  )
+  (is (not (s/valid? :sherman.grammar/expanding-symbol "#mistake"))))
 
