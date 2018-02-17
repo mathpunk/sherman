@@ -3,13 +3,21 @@
             [cljs.spec.alpha :as s]
             [devcards.core :refer-macros [deftest]]))
 
-(deftest test-testing-in-grammar
-  (is (= true true)))
+
+(defn- bracketed [term]
+  (and (.startsWith term "#") (.endsWith term "#")))
 
 
-(s/def :sherman.grammar/expanding-symbol string?)
+(deftest test-helpers
+  (is (not (bracketed-in-hashes "hi"))))
+
+
+(s/def :sherman.grammar/expanding-symbol
+  (s/and string?))
 
 
 (deftest test-expanding-symbols
-  (is (s/valid? :sherman.grammar/expanding-symbol "#expands#")))
+  (is (s/valid? :sherman.grammar/expanding-symbol "#expands#"))
+  (is (not (s/valid? :sherman.grammar/expanding-symbol "non-expanding")))
+  )
 
