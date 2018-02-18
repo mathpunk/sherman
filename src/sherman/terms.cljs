@@ -1,0 +1,35 @@
+(ns sherman.terms
+  (:require [cljs.nodejs :as nodejs]
+            [cljs.spec.alpha :as s]))
+
+
+(defn- count-hashes [term]
+  (count (re-seq #"#" term)))
+
+
+(defn- hash-bracketed [term]
+  (let [hash-occurrences (count-hashes term)
+        test-endpoints (and (clojure.string/starts-with? term "#")
+                            (clojure.string/ends-with? term "#"))]
+    (and test-endpoints (= 2 hash-occurrences))))
+
+
+(s/def ::expanding-symbol
+  (s/and string?
+         #(hash-bracketed %)))
+
+
+(s/def ::terminating-symbol
+  (s/and string?
+         (fn [term] (= 0 (count-hashes term)))))
+
+
+(defn- tokenize [term]
+  (clojure.string/split term #"\s+"))
+
+
+(s/def ::valid-term
+  (fn [term]
+    (let [tokens (tokenize term)]
+      (s/alt :terminating (s/* ::terminating-symbol)
+             :expanding (s/* ::expanding-symbol)))))

@@ -12,3 +12,4 @@ pom.xml.asc
 out/
 figwheel_server.log
 resources/public/cljs/
+node_modules/
