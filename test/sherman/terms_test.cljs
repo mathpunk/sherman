@@ -27,15 +27,18 @@
   (is (not (s/valid? :sherman.terms/valid-sequence ["however" "no" "#mistakes" "are#" "per#mitted" "at" "#all#"]))))
 
 
-(deftest test-valid-terms
+(deftest test-valid-simple-terms
   (is (s/valid? :sherman.terms/valid-term "#expands#"))
   (is (s/valid? :sherman.terms/valid-term "This also #expands#"))
   (is (s/valid? :sherman.terms/valid-term "Validity can be #complicated#, my friend"))
   (is (s/valid? :sherman.terms/valid-term "Alas, poor #friend#: An #expander#'s #punctuation#? #Irrelevant#."))
-  #_(is (s/valid? :sherman.terms/valid-term "Bummer about the mdash, #friend#---I don't know how to validate that."))
+  (is (s/valid? :sherman.terms/valid-term "Even the m-dash, #friend#---that's valid."))
   (is (s/valid? :sherman.terms/valid-term "A #expander#'s punctuation shouldn't #matter#."))
   (is (s/valid? :sherman.terms/valid-term "Mind you not everything has to expand."))
   (is (not (s/valid? :sherman.terms/valid-term "But terms with #mistakes should be rejected"))))
 
+
+(deftest test-valid-modified-terms
+  (is (s/valid? :sherman.terms/valid-term "#name.capitalize#")))
 
 (cljs.test/run-tests)

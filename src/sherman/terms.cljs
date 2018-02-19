@@ -16,7 +16,7 @@
 
 (s/def ::expanding-symbol
   (s/and string?
-         #(hash-bracketed %)))
+         (fn [term] (= 2 (count-hashes term)))))
 
 
 (s/def ::terminating-symbol
@@ -24,8 +24,11 @@
          (fn [term] (= 0 (count-hashes term)))))
 
 
+#_(def punctuation #"[!@$%^&*(),./<>?\[\]{};:\"'\s]+")
+
+
 (defn- tokenize [term]
-  (clojure.string/split term #"[!@$%^&*(),./<>?\[\]{};:\"'\s]+"))
+  (clojure.string/split term #"\s+"))
 
 
 (s/def ::valid-sequence

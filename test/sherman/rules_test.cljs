@@ -26,4 +26,17 @@
     (is (not (s/valid? :sherman.rules/rules mistake-story)))))
 
 
+(deftest test-valid-sentences
+  (let [rules {"food" ["milkshakes" "artichokes"]
+               "preference" ["like" "hate"]
+               "sentiment" ["delicious" "repellent"]
+               "sentence" ["I #preference# #food#" "#food.capitalize# are #sentiment#"]}
+        sentence-choices (rules "sentence")
+        sample-sentence (first sentence-choices)]
+    (is (s/valid? :sherman.terms/valid-term sample-sentence))
+    (s/explain :sherman.rules/choices sentence-choices)
+    (is (s/valid? :sherman.rules/choices sentence-choices))
+    ))
+
+
 (cljs.test/run-tests)
