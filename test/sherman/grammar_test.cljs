@@ -15,15 +15,28 @@
     (is (g/grammar rules))))
 
 
-(deftest test-generation
+(deftest test-trace-generation
   (let [simple-rules {"character-one" ["man"]
                       "character-two" ["dog"]
                       "verb" ["bites"]
                       "story" ["#character-one.capitalize# #verb# #character-two#."]}
         generator (g/grammar simple-rules)]
     (is (= (.flatten generator "#story#") "Man bites dog."))
-    #_(is (= (g/generate generator "story") "Man bites dog."))
+    (is (= (g/trace simple-rules "story") "Man bites dog."))
     ))
+
+
+(deftest test-applying-rules-to-templates
+  (let [simple-rules {"food" ["milkshakes"]
+                      "sentiment" ["delicious"]}]
+    (is (= (g/apply simple-rules "#food.capitalize# are #sentiment#!")
+           "Milkshakes are delicious!"))
+    (is (= (g/apply simple-rules "There's nothing more #sentiment# than #food.a#.")
+           "There's nothing more delicious than a milkshakes."))
+    (is (= (g/apply simple-rules
+                    "#food.capitalize# are #sentiment#!"
+                    "#food.capitalize# are #sentiment#!")
+           "Milkshakes are delicious!"))))
 
 
 (cljs.test/run-tests)

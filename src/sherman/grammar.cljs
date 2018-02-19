@@ -1,4 +1,5 @@
 (ns sherman.grammar
+  (:refer-clojure :exclude [apply])
   (:require [cljs.nodejs :as nodejs]
             [cljs.spec.alpha :as s]))
 
@@ -12,13 +13,16 @@
     base-grammar))
 
 
-(defn generate [rules template-name]
+(defn trace
+  "Generate a sentence from rules and a template name. Note, this is different
+  from making a generator that you then act on, which could be an okay interface
+  too."
+  [rules template-name]
   (.flatten (grammar rules) (str "#" template-name "#")))
 
 
-#_(defn template [rules & templates]
-    (let [sentence-patterns (vec templates)
-          sentence-name (str (gensym))
-          complete-rules (assoc rules sentence-name sentence-patterns)]
-      (trace complete-rules sentence-name)))
-
+(defn apply [rules & templates]
+  (let [sentence-patterns (vec templates)
+        sentence-name (str (gensym))
+        complete-rules (assoc rules sentence-name sentence-patterns)]
+    (trace complete-rules sentence-name)))
