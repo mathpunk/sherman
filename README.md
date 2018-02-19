@@ -43,3 +43,7 @@ What sorts of flavor text could be useful to generate for games?
 * Emily Short, for her many contributions to the field of interactive fiction. She [blogs](https://emshort.blog/) extensively on interactive fiction and conversation modeling, and I really enjoyed [this talk](https://www.youtube.com/watch?v=narjui3em1k) on procedural text generation and collaborating with the machine to, in this case, create a travel guide.
 * George Buckenham, for packaging Tracery for Node.js: https://github.com/v21/tracery
 
+
+## Why 'sherman'?
+
+After photographer Cindy Sherman. The idea of making numerous grammars in different genres and purposes made me think of her make-up and costuming in her many [self-portraits](https://www.google.com/search?as_st=y&tbm=isch&as_q=cindy+sherman+self-portraits).
