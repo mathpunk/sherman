@@ -34,7 +34,6 @@
         sentence-choices (rules "sentence")
         sample-sentence (first sentence-choices)]
     (is (s/valid? :sherman.terms/valid-term sample-sentence))
-    (s/explain :sherman.rules/choices sentence-choices)
     (is (s/valid? :sherman.rules/choices sentence-choices))))
 
 

@@ -41,4 +41,5 @@
 (deftest test-valid-modified-terms
   (is (s/valid? :sherman.terms/valid-term "#name.capitalize#")))
 
+
 (cljs.test/run-tests)
