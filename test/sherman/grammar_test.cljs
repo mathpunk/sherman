@@ -39,4 +39,16 @@
            "Milkshakes are delicious!"))))
 
 
+(deftest test-grammar-inputs-are-rules
+  (let [good-rules {"food" ["milkshakes" "artichokes"]
+                    "preference" ["like" "hate"]
+                    "sentiment" ["delicious" "repellent"]
+                    "sentence" ["I #preference# #food#" "#food.capitalize# are #sentiment#"]}]
+    (is (s/valid? :sherman.rules/rules good-rules)) ;; Validating test input
+    ;; TODO: Test that grammar yields a helpful error message when given invalid rules.
+    ))
+
+
+
+
 (cljs.test/run-tests)

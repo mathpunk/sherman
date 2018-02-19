@@ -24,9 +24,6 @@
          (fn [term] (= 0 (count-hashes term)))))
 
 
-#_(def punctuation #"[!@$%^&*(),./<>?\[\]{};:\"'\s]+")
-
-
 (defn- tokenize [term]
   (clojure.string/split term #"\s+"))
 
