@@ -1,8 +1,7 @@
 (ns sherman.rules-test
   (:require [cljs.test :refer-macros [deftest is testing]]
             [sherman.rules]
-            [cljs.spec.alpha :as s]
-            ))
+            [cljs.spec.alpha :as s]))
 
 
 (deftest test-testing-of-rules
@@ -28,4 +27,3 @@
 
 
 (cljs.test/run-tests)
-
