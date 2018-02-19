@@ -21,7 +21,13 @@
   (is (not (s/valid? :sherman.terms/terminating-symbol "#error"))))
 
 
-(deftest test-expanding-terms
+(deftest test-valid-sequences
+  (is (s/valid? :sherman.terms/valid-sequence ["terminating" "sequences" "are" "fine"]))
+  (is (s/valid? :sherman.terms/valid-sequence ["sequences" "with" "#expanding#" "terms" "are" "#too#"]))
+  (is (not (s/valid? :sherman.terms/valid-sequence ["however" "no" "#mistakes" "are#" "per#mitted"]))))
+
+
+(deftest test-valid-terms
   (is (s/valid? :sherman.terms/valid-term "#expands#"))
   (is (s/valid? :sherman.terms/valid-term "This also #expands#"))
   (is (s/valid? :sherman.terms/valid-term "#Validity# can be #complicated#, my friend"))

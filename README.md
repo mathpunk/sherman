@@ -40,6 +40,6 @@ What sorts of flavor text could be useful to generate for games?
   + a 30 minute talk: https://www.youtube.com/watch?v=WumyfLEa6bU
   + an in-depth post: http://galaxykate0.tumblr.com/post/139774965871/so-you-want-to-build-a-generator
   + a friendly zine: http://www.galaxykate.com/pdfs/galaxykate-zine-encyclopedia.pdf
-* Emily Short, for her many contributions to the field of interactive fiction. One place to start might be, https://www.youtube.com/watch?v=narjui3em1k
+* Emily Short, for her many contributions to the field of interactive fiction. She [blogs](https://emshort.blog/) extensively on interactive fiction and conversation modeling, and I really enjoyed [this talk](https://www.youtube.com/watch?v=narjui3em1k) on procedural text generation and collaborating with the machine to, in this case, create a travel guide.
 * George Buckenham, for packaging Tracery for Node.js: https://github.com/v21/tracery
 

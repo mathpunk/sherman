@@ -24,12 +24,14 @@
          (fn [term] (= 0 (count-hashes term)))))
 
 
+(s/def ::valid-sequence
+  (s/* (s/alt :expanding ::expanding-symbol :terminating ::terminating-symbol)))
+
+
 (defn- tokenize [term]
   (clojure.string/split term #"\s+"))
 
 
 (s/def ::valid-term
   (fn [term]
-    (let [tokens (tokenize term)]
-      (s/alt :terminating (s/* ::terminating-symbol)
-             :expanding (s/* ::expanding-symbol)))))
+    (s/valid? ::valid-sequence (tokenize term))))
