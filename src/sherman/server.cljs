@@ -6,23 +6,25 @@
 (defonce express (nodejs/require "express"))
 (defonce http (nodejs/require "http"))
 
-                                        ; Create our app.
+
 (def app (express))
+
+
+(defn send-trace [req res sentence]
+  (let [message (grammar/trace magic/magic-rules sentence)]
+    (. res (send message))))
+
 
 (. app (get "/magic/spell"
             (fn [req res]
-              (. res
-                 (send
-                  (grammar/trace magic/magic-rules (rand-nth [ "spell" "item" ])))))))
+              (send-trace req res "spell"))))
+
 
 (. app (get "/magic/item"
             (fn [req res]
-              (. res
-                 (send
-                  (grammar/trace magic/magic-rules (rand-nth [ "spell" "item" ])))))))
+              (send-trace req res "item"))))
 
 
-                                        ; Listen on port 3000.
 (defn -main [& args]
   (let [port 3000]
     (println (str "Serving magic on port " port))
