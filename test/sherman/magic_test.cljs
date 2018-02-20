@@ -6,7 +6,9 @@
 
 
 (deftest test-magic-rules
-  (is (s/valid? :sherman.rules/rules magic/magic-rules)))
+  (do
+    (s/explain :sherman.rules/rules magic/magic-rules)
+    (is (s/valid? :sherman.rules/rules magic/magic-rules))))
 
 
 (println "")

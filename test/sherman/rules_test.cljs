@@ -23,7 +23,9 @@
                        "object" ["hat" "ride#"]
                        "story" ["#character# #verb# #character# for a #object#"]}]
     (is (s/valid? :sherman.rules/rules wizard-story))
-    (is (not (s/valid? :sherman.rules/rules mistake-story)))))
+    (is (not (s/valid? :sherman.rules/rules mistake-story)))
+    ;; TODO: any expander should appear in the map as a key
+    ))
 
 
 (deftest test-valid-sentences
