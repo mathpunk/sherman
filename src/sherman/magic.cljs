@@ -1,4 +1,5 @@
-(ns sherman.magic)
+(ns sherman.magic
+  (:require [sherman.grammar :refer [grammar]]))
 
 
 ;; People
@@ -17,17 +18,18 @@
 (def element {"element" ["flame" "fire" "frost" "cold" "lightning" "wind"]})
 
 ;; Schools
-(def necromantic {"necromantic" ["gloom" "regret" "mourning" "undying" "death"]})
+(def necromantic {"necromantic" ["gloomy" "regretful" "mourning" "undying" "death"]})
 (def illusion {"illusion" ["glittering" "prismatic" "phantasmic" "bewildering"]})
 (def thaumaturgy {"thaumaturgy" ["evocation" "thaumaturgy" "invocation" "abjuration" "divination" "channeling" "sorcery"]})
 
 ;; Qualities
-(def adjective {"adjective" ["steely" "stalwart" "crafty" "subtle" "creeping" "violent" "ubiquitous"]})
+(def adjective {"adjective" ["steely" "stalwart" "crafty" "endless" "subtle"
+                             "creeping" "violent" "ubiquitous" "saucy" "troubled"]})
 
 ;; Ends
 (def fortune {"fortune" ["fortune" "wishes" "luck" "protection" "second chances" "courage" "fortitude"]})
-(def fate {"fate" ["fate" "doom" "toil" "ending"]})
-(def end  {"ends" ["#fate#" "#fortune#"]})
+(def fate {"fate" ["fate" "doom" "toil" "ending" "forever"]})
+(def end  {"end" ["#fate#" "#fortune#"]})
 
 ;; Sentences
 (def spell {"spell" ["#wizard#'s #projection#"
@@ -37,7 +39,7 @@
 (def item {"item" ["#ethnicity.a# #clothing# of #end#"
                    "#profession.a#'s #jewelry# of #fortune#"
                    "#wizard#'s #artefact# of #adjective# #end#"
-                   "the #artefact# of #evocation#"]})
+                   "the #artefact# of #thaumaturgy#"]})
 
 ;; Assembly
 (def magic-rules (merge wizard 
@@ -58,5 +60,4 @@
                         end 
                         spell 
                         item))
-
 

@@ -18,7 +18,12 @@ Library goals:
 
 ## Usage
 
-At this early stage I'm just generating text by working at the repl.
+Currently I'm working either in the repl, or running `lumo -K -c $(lein classpath) -m sherman.core`. 
+
+TODO:
++ `lein classpath` takes a long time to run. Can this information be cached?
++ command-line options to generate from different grammars?
++ microservice pattern: ways to spin up a node server that responds to requests with traces from grammars
 
 ## Grammar Ideas
 
