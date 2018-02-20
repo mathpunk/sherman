@@ -18,12 +18,10 @@ Library goals:
 
 ## Usage
 
-Currently I'm working either in the repl, or running `lumo -K -c $(lein classpath) -m sherman.core`. 
+Invoking `lumo -K -c $(lein classpath) -m sherman.core` will print 50 lines of spells or items to the terminal. Invoking `lumo -K -c $(lein classpath) -m sherman.server` will start a server at `localhost:3000` that reponds to requests at `/magic/item` and `magic/spell`. Or, generate magic items & spells in the repl.
 
-TODO:
-+ `lein classpath` takes a long time to run. Can this information be cached?
-+ command-line options to generate from different grammars?
-+ microservice pattern: ways to spin up a node server that responds to requests with traces from grammars
++ options to generate traces from different grammars?
++ more complex REST api: serve multiple grammars? mutate a grammar?
 
 ## Grammar Ideas
 
