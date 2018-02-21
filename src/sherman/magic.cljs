@@ -1,5 +1,6 @@
 (ns sherman.magic
-  (:require [sherman.corpora :as corpora]))
+  (:require [clojure.string]
+            [sherman.corpora :as corpora]))
 
 ;; Nice corpora
 ;; ---------------------
