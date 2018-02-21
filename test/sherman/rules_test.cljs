@@ -1,5 +1,6 @@
 (ns sherman.rules-test
   (:require [cljs.test :refer-macros [deftest is testing]]
+            [sherman.magic :as magic]
             [sherman.rules]
             [cljs.spec.alpha :as s]))
 
@@ -38,5 +39,34 @@
     (is (s/valid? :sherman.terms/valid-term sample-sentence))
     (is (s/valid? :sherman.rules/choices sentence-choices))))
 
+
+(deftest test-loaded-magic-elements
+  (is (s/valid? :sherman.rules/rules magic/wizard))
+  (is (s/valid? :sherman.rules/rules magic/monster))
+  (is (s/valid? :sherman.rules/rules magic/ethnicity))
+  (is (s/valid? :sherman.rules/rules magic/profession))
+  (is (s/valid? :sherman.rules/rules magic/prepared))
+  (is (s/valid? :sherman.rules/rules magic/artifact))
+  (is (s/valid? :sherman.rules/rules magic/jewelry))
+  (is (s/valid? :sherman.rules/rules magic/lovecraftian))
+  (is (s/valid? :sherman.rules/rules magic/clothing))
+  (is (s/valid? :sherman.rules/rules magic/item))
+  (is (s/valid? :sherman.rules/rules magic/projection))
+  (is (s/valid? :sherman.rules/rules magic/projectile))
+  (is (s/valid? :sherman.rules/rules magic/element))
+  (is (s/valid? :sherman.rules/rules magic/necromantic))
+  (is (s/valid? :sherman.rules/rules magic/charm))
+  (is (s/valid? :sherman.rules/rules magic/gemstone))
+  (is (s/valid? :sherman.rules/rules magic/illusory))
+  (is (s/valid? :sherman.rules/rules magic/thaumaturgy))
+  (is (s/valid? :sherman.rules/rules magic/adjective))
+  (is (s/valid? :sherman.rules/rules magic/fortune))
+  (is (s/valid? :sherman.rules/rules magic/fate))
+  (is (s/valid? :sherman.rules/rules magic/end))
+  (is (s/valid? :sherman.rules/rules magic/fluid))
+  (is (s/valid? :sherman.rules/rules magic/metal))
+  (is (s/valid? :sherman.rules/rules magic/spell))
+  (is (s/valid? :sherman.rules/rules magic/item))
+  )
 
 (cljs.test/run-tests)
