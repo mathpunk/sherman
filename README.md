@@ -16,12 +16,28 @@ Library goals:
 * Create procedurally generated content for game jams and bots and such...
 * ...accessible through command-line and http interfaces
 
+
 ## Usage
 
-Invoking `lumo -K -c $(lein classpath) -m sherman.core` will print 50 lines of spells or items to the terminal. Invoking `lumo -K -c $(lein classpath) -m sherman.server` will start a server at `localhost:3000` that reponds to requests at `/magic/item` and `magic/spell`. Or, generate magic items & spells in the repl.
+Who doesn't need 
 
-+ options to generate traces from different grammars?
-+ more complex REST api: serve multiple grammars? mutate a grammar?
+Who **couldn't*** use `Castamir the Usurper's mantle of ubiquitous second chances`, or `an orcish sweater of courage`? Wouldn't `Túrin's regretful cantrip` help you during your day?
+
+Clone the repository and `cd` into it. Then:
+
+### As a command line application
+
+Invoke `lumo -K -c $(lein classpath) -m sherman.core` to print 50 lines of spells or items to the terminal.
+
+### As a web service
+
+Invoke `lumo -K -c $(lein classpath) -m sherman.server` to start a server at `localhost:3000`. Currently there's only one grammar, the `magic` grammar, and you can query it by sending a `GET` request to `/magic/item` or `/magic/spell`. (That is, you can visit `http://localhost:3000/magic/item` in your browser, or run `curl localhost:3000/magic/spell` in your terminal, to get your item or spell.)
+
+## TODO
+
++ add grammars
++ continue complexifying current grammar(s)
++ consider more complex REST service; maybe it starts with a base grammar and users can add symbols and expanders to it?
 
 ## Grammar Ideas
 
