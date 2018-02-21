@@ -1,6 +1,7 @@
 (ns sherman.server
   (:require [sherman.grammar :as grammar]
             [sherman.magic :as magic]
+            [sherman.oaths :as oaths]
             [cljs.nodejs :as nodejs]))
 
 (defonce express (nodejs/require "express"))
@@ -10,19 +11,24 @@
 (def app (express))
 
 
-(defn send-trace [req res sentence]
-  (let [message (grammar/trace magic/magic-rules sentence)]
+(defn send-trace [req res rules sentence]
+  (let [message (grammar/trace rules sentence)]
     (. res (send message))))
 
 
 (. app (get "/magic/spell"
             (fn [req res]
-              (send-trace req res "spell"))))
+              (send-trace req res magic/magic-rules "spell"))))
 
 
 (. app (get "/magic/item"
             (fn [req res]
-              (send-trace req res "item"))))
+              (send-trace req res magic/magic-rules "item"))))
+
+
+(. app (get "/oath"
+            (fn [req res]
+              (send-trace req res oaths/rules "oath"))))
 
 
 (defn -main [& args]
