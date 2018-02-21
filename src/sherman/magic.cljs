@@ -1,9 +1,13 @@
 (ns sherman.magic
-  (:require [sherman.grammar :refer [grammar]]))
+  (:require [sherman.corpora :as corpora]))
 
 
 ;; People
-(def wizard {"wizard" ["Gandalf" "Zigil" "Zatanna" "Erowid" "Urza" "Glinda" "Rincewind" "Garibaldi" "Slaariel" "Hippolyta"]})
+(def wizard-names ["Gandalf" "Zigil" "Zatanna" "Erowid" "Urza" "Glinda" "Rincewind" "Garibaldi" "Slaariel" "Hippolyta"])
+(def tolkien-names
+  (let [corpus (corpora/load-corpus ["humans" "tolkienCharacterNames"])]
+    (corpus "names")))
+(def wizard {"wizard" (concat wizard-names tolkien-names)})
 (def ethnicity {"ethnicity" ["elvish" "dwarven" "ogrish" "halfling" "orcish" "goblin"]})
 (def profession {"profession" ["fighter" "thief" "rogue" "bard" "druid" "ranger" "wizard" "cleric" "shaman" "warrior" "paladin"]})
 
@@ -24,12 +28,13 @@
 (def thaumaturgy {"thaumaturgy" ["evocation" "thaumaturgy" "invocation" "abjuration" "divination" "channeling" "sorcery"]})
 
 ;; Qualities
-(def adjective {"adjective" ["steely" "stalwart" "crafty" "endless" "subtle"
+(def adjective {"adjective" ["steely" "stalwart" "crafty" "endless" "subtle" "#necromantic#" "#illusory#"
                              "creeping" "violent" "ubiquitous" "troubled"]})
+(def gemstone {"gemstone" ((corpora/load-corpus ["materials" "gemstones"]) "gemstones")})
 
 ;; Ends
 (def fortune {"fortune" ["fortune" "wishes" "luck" "protection" "second chances" "courage" "fortitude"]})
-(def fate {"fate" ["fate" "doom" "toil" "forever" "emancipation" "imprisonment" "mortality" "rebirth"]})
+(def fate {"fate" ["fate" "doom" "toil" "forever" "emancipation" "allure" "imprisonment" "mortality" "rebirth"]})
 (def end  {"end" ["#fate#" "#fortune#"]})
 
 ;; Sentences
@@ -44,6 +49,7 @@
                    "#profession.a#'s #jewelry# of #fortune#"
                    "#wizard#'s #artefact# of #adjective# #end#"
                    "#artefact# of #thaumaturgy#"
+                   "#gemstone# #jewelry# of #adjective# #end#"
                    ]})
 
 ;; Assembly
@@ -58,6 +64,7 @@
                         element 
                         necromantic 
                         charm
+                        gemstone
                         illusory
                         thaumaturgy 
                         adjective 
