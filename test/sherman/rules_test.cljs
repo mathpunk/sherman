@@ -46,7 +46,7 @@
   (is (s/valid? :sherman.rules/rules magic/ethnicity))
   (is (s/valid? :sherman.rules/rules magic/profession))
   (is (s/valid? :sherman.rules/rules magic/prepared))
-  (is (s/valid? :sherman.rules/rules magic/artifact))
+  #_(is (s/valid? :sherman.rules/rules magic/artifact))
   (is (s/valid? :sherman.rules/rules magic/jewelry))
   (is (s/valid? :sherman.rules/rules magic/lovecraftian))
   (is (s/valid? :sherman.rules/rules magic/clothing))
