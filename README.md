@@ -16,10 +16,13 @@ Library goals:
 * Create procedurally generated content for game jams and bots and such...
 * ...accessible through command-line and http interfaces
 
+## Prerequisites
+
+You should have nodejs installed --- check the instructions for your machine. Install `lumo` with `npm install lumo-cljs --global` (or yarn, probably?). Clone the repo. Get in it. I bet `npm install` there. 
+
+Please post an issue or tweet at me if you have problems!
 
 ## Usage
-
-Who doesn't need 
 
 Who **couldn't*** use `Castamir the Usurper's mantle of ubiquitous second chances`, or `an orcish sweater of courage`? Wouldn't `Túrin's regretful cantrip` help you during your day?
 

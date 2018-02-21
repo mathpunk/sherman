@@ -65,6 +65,7 @@
 (def jewelry {"jewelry" ["torque" "ring" "pendant" "jewel" "amulet"]})
 (def clothing {"clothing" ["cape" "shroud" "shawl" "sweater" "cloak" "belt" "helm" "mantle"]})
 
+;; TODO: Something terrible happens in this version of artefacts
 #_(def artifact
     (let [artifacts (get (corpora/load-corpus ["archetypes" "artifact"]) "artifacts")
           all-names (fn [artifact] (conj (artifact "synonyms") (artifact "name")))
@@ -72,11 +73,13 @@
           other-artifacts ["wand" "music box" "scroll" "mask"]]
       {"artifact" (concat artifact-names other-artifacts)}))
 
+(def reading {"text" {"book" "scroll" "tome" "tablet"}})
+(def artefact {"artefact" ["#jewelry#" "#clothing#" "#text#"]})
+
 (def fluid
   (let [corpus (corpora/load-corpus ["materials" "abridged-body-fluids"])
         fluids (get corpus "abridged body fluids")]
     {"fluid" fluids}))
-(def item {"item" ["#jewelry#" "#clothing#"]})
 (def monster
   (let [monsters (get (corpora/load-corpus ["mythology" "monsters"]) "names")]
     {"monster" monsters}))
@@ -116,6 +119,7 @@
                      "#wizard#'s #illusory# #projectile#"
                      "#element# #charm# of the #adjective#"
                      "bonds of #metal#"
+                     "blast of #lovecraftian# #projectile#"
                      "#wizard#'s #necromantic# #projectile#"]})
 
 (def item {"item" ["#ethnicity.a# #clothing# of #end#"
@@ -145,7 +149,7 @@
                         fortune
                         fate
                         end
-                        ;; artifact
+                        artifact
                         item
 
                         prepared
