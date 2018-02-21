@@ -49,8 +49,7 @@
 
 (defn clean-name [character-name]
   (-> character-name
-      (clojure.string/replace "(Steward)" "")
-      (clojure.string/replace #"\(\w+ Age\)" "")
+      (clojure.string/replace #"\([\w\s]+\)" "")
       (clojure.string/trim)))
 
 (def tolkien-names
@@ -73,7 +72,7 @@
           other-artifacts ["wand" "music box" "scroll" "mask"]]
       {"artifact" (concat artifact-names other-artifacts)}))
 
-(def reading {"text" {"book" "scroll" "tome" "tablet"}})
+(def text {"text" ["book" "scroll" "tome" "tablet"]})
 (def artefact {"artefact" ["#jewelry#" "#clothing#" "#text#"]})
 
 (def fluid
@@ -116,16 +115,18 @@
 (def spell {"spell" ["#projectile# of #wizard#"
                      "#wizard#'s #necromantic# #charm#"
                      "#wizard#'s #illusory# #charm#"
-                     "#wizard#'s #illusory# #projectile#"
+                     "#wizard#'s #illusory# #projection#"
+                     "#wizard#'s blast of #lovecraftian# #projectile#"
                      "#element# #charm# of the #adjective#"
-                     "bonds of #metal#"
-                     "blast of #lovecraftian# #projectile#"
-                     "#wizard#'s #necromantic# #projectile#"]})
+                     "#wizard#'s bonds of #metal#"
+                     "#wizard#'s #necromantic# #projection#"]})
 
 (def item {"item" ["#ethnicity.a# #clothing# of #end#"
                    "#profession.a#'s #jewelry# of #fortune#"
-                   "#wizard#'s #item# of #adjective# #end#"
-                   "#item# of #thaumaturgy#"
+                   "#wizard#'s #artefact# of #adjective# #end#"
+                   "a #lovecraftian# #text# by #wizard#"
+                   "#illusory.a# #metal# #jewelry#"
+                   "#artefact# of #thaumaturgy#"
                    "#gemstone# #jewelry# of #adjective# #end#"
                    "#fluid# of #monster#"
                    "#prepared# #monster#'s #fluid#"
@@ -133,6 +134,7 @@
 
 ;; Assembly
 (def magic-rules (merge wizard
+                        text
                         monster
                         ethnicity
                         profession
@@ -149,8 +151,7 @@
                         fortune
                         fate
                         end
-                        artifact
-                        item
+                        artefact
                         prepared
                         lovecraftian
                         gemstone
