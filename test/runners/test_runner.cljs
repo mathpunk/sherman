@@ -4,4 +4,7 @@
             [sherman.rules-test]
             [sherman.grammar-test]
             [sherman.corpora-test]
-            [sherman.magic-test]))
+            [sherman.magic-test]
+            [sherman.oaths-test]))
+
+
