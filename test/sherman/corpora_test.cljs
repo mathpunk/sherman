@@ -18,4 +18,11 @@
     (is (contains? corpus "gemstones"))))
 
 
+(deftest test-specific-corpora
+  (let [artefact-maps (get (corpora/load-corpus ["archetypes" "artifact"]) "artifacts")]
+    (is (every? map? artefact-maps))
+    (is (s/valid? :sherman.rules/choices corpora/artifacts))
+    (println corpora/artifacts)))
+
+
 (cljs.test/run-tests)
