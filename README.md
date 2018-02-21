@@ -18,7 +18,7 @@ Library goals:
 
 ## Prerequisites
 
-You should have nodejs installed --- check the instructions for your machine. Install `lumo` with `npm install lumo-cljs --global` (or yarn, probably?). Clone the repo. Get in it. I bet `npm install` there. 
+You should have nodejs installed --- check the instructions for your machine. Install `lumo` with `npm install lumo-cljs --global` (or yarn, probably?). Clone the repo. Get in it. I bet `npm install` there. Oh, and for now you need leiningen, Clojure's build tool.
 
 Please post an issue or tweet at me if you have problems!
 

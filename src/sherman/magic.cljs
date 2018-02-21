@@ -151,12 +151,10 @@
                         end
                         artifact
                         item
-
                         prepared
                         lovecraftian
                         gemstone
                         fluid
                         metal
-
                         spell
                         item))
