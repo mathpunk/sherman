@@ -3,7 +3,7 @@
  ["src"]
 
  :dependencies
- []
+ [[com.cognitect/transit-cljs "0.8.243"]]
 
  :builds
  {:app {:target :node-script
