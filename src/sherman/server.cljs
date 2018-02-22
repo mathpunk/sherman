@@ -31,7 +31,7 @@
               (send-trace req res oaths/rules "oath"))))
 
 
-(defn -main [& args]
+(defn main [& args]
   (let [port 3000]
     (println (str "Serving magic on port " port))
     (doto (.createServer http #(app %1 %2))

@@ -1,0 +1,13 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src"]
+
+ :dependencies
+ []
+
+ :builds
+ {:app {:target :node-script
+        :output-dir "dist"
+        :output-to "dist/sherman-server.js"
+        :main sherman.server/main
+        :modules {:main {:entries [sherman.server]}}}}}
