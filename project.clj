@@ -1,6 +1,6 @@
 (defproject sherman "0.1.0-SNAPSHOT"
-  :description "FIXME: write this!"
-  :url "http://example.com/FIXME"
+  :description "Create and serve procedurally generated text"
+  :url ""
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.9.946"]
                  [com.cognitect/transit-cljs "0.8.243"]]

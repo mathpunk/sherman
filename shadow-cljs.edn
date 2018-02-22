@@ -1,6 +1,6 @@
 ;; shadow-cljs configuration
 {:source-paths
- ["src"]
+ ["src" "test"]
 
  :dependencies
  [[com.cognitect/transit-cljs "0.8.243"]]
@@ -10,4 +10,7 @@
         :output-dir "dist"
         :output-to "dist/sherman-server.js"
         :main sherman.server/main
-        :modules {:main {:entries [sherman.server]}}}}}
+        :modules {:main {:entries [sherman.server]}}}
+  :test {:target :node-test
+         :output-to "out/node-tests.js"
+         :ns-regexp "-test$"}}}
