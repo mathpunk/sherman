@@ -22,6 +22,3 @@
 (println "")
 (dotimes [n 5]
   (println (g/trace oaths/rules "oath")))
-
-
-(cljs.test/run-tests)

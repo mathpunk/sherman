@@ -18,23 +18,29 @@ Library goals:
 
 ## Prerequisites
 
-You should have nodejs installed --- check the instructions for your machine. Install `lumo` with `npm install lumo-cljs --global` (or yarn, probably?). Clone the repo. Get in it. I bet `npm install` there. Oh, and for now you need leiningen, Clojure's build tool.
-
-Please post an issue or tweet at me if you have problems!
+Node.js should be the only requirement to run the `sherman-server.js` file in the `dist` directory. If you want to build it, you'll also need to install shadow-cljs, with `npm install shadow-cljs --global`. Then run `npm install`, and `shadow-cljs compile app`. 
 
 ## Usage
 
 Who **couldn't*** use `Castamir the Usurper's mantle of ubiquitous second chances`, or `an orcish sweater of courage`? Wouldn't `Túrin's regretful cantrip` help you during your day?
 
-Clone the repository and `cd` into it. Then:
+### As a service
 
-### As a command line application
+Clone the repository and `cd` into it. Run `node dist/sherman-server.js`. This will start a server at `localhost:3000`. You can query it with
 
-Invoke `lumo -K -c $(lein classpath) -m sherman.core` to print 50 lines of spells or items to the terminal.
+* `curl localhost:3000/magic/spell` for a magic spell name
+* `curl localhost:3000/magic/item` for a magic item name
+* `curl localhost:3000/oath` to get an exclamation
 
-### As a web service
+Or, visit these urls in your browser for the same effect.
 
-Invoke `lumo -K -c $(lein classpath) -m sherman.server` to start a server at `localhost:3000`. Currently there's only one grammar, the `magic` grammar, and you can query it by sending a `GET` request to `/magic/item` or `/magic/spell`. (That is, you can visit `http://localhost:3000/magic/item` in your browser, or run `curl localhost:3000/magic/spell` in your terminal, to get your item or spell.)
+### As a command line script
+
+tk
+
+## Testing
+
+My strategy is to run `shadow watch compile test` to keep an up-to-date test file generated, then in a separate process run chokidar (`npm install chokidar-cli --global`) to watch for changes in that file with `chokidar out/node-tests.js -c 'node out/node-tests.js'`.
 
 ## TODO
 

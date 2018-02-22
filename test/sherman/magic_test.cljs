@@ -15,6 +15,3 @@
 (dotimes [n 4]
   (println (g/trace magic/magic-rules "spell"))
   (println (g/trace magic/magic-rules "item")))
-
-
-(cljs.test/run-tests)

@@ -21,6 +21,3 @@
 (deftest test-specific-corpora
   (let [artefact-maps (get (corpora/load-corpus ["archetypes" "artifact"]) "artifacts")]
     (is (every? map? artefact-maps))))
-
-
-(cljs.test/run-tests)

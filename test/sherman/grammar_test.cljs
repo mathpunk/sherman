@@ -47,8 +47,3 @@
     (is (s/valid? :sherman.rules/rules good-rules)) ;; Validating test input
     ;; TODO: Test that grammar yields a helpful error message when given invalid rules.
     ))
-
-
-
-
-(cljs.test/run-tests)

@@ -33,6 +33,6 @@
 
 (defn main [& args]
   (let [port 3000]
-    (println (str "Serving magic on port " port))
+    (println (str "Serving magic and oaths on port " port))
     (doto (.createServer http #(app %1 %2))
       (.listen 3000))))

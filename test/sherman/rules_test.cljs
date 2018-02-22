@@ -69,4 +69,3 @@
   (is (s/valid? :sherman.rules/rules magic/item))
   )
 
-(cljs.test/run-tests)
