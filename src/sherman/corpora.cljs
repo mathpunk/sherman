@@ -44,12 +44,9 @@
 (def minor-planets (retrieve-items ["science" "minor_planets"] "minor_planets"))
 
 (def tolkien-names
-  (let [clean-name (fn [character-name] ;; For getting rid of "(First Age)" etc.
-                     (-> character-name
-                         (string/replace #"\(.+\)" "")
-                         (string/trim)))]
-    (->> (retrieve-items ["humans" "tolkienCharacterNames"] "names")
-         (map clean-name))))
+  (let [characters (retrieve-items ["humans" "tolkienCharacterNames"] "names")
+        clean-name (comp string/trim #(string/replace % #"\(.+\)" ""))] ;; e.g, remove "(First Age)"
+    (map clean-name characters)))
 
 (def greek-gods
   (retrieve-items ["mythology" "greek_myths_master"] "greek_gods"))
