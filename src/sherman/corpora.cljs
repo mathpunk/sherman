@@ -51,6 +51,18 @@
     (->> (retrieve-items ["humans" "tolkienCharacterNames"] "names")
          (map clean-name))))
 
+(def greek-gods
+  (retrieve-items ["mythology" "greek_myths_master"] "greek_gods"))
+
+(def norse-gods
+  (retrieve-items ["mythology" "norse_gods"] "norse_deities" "gods"))
+
+(def norse-goddesses
+  (retrieve-items ["mythology" "norse_gods"] "norse_deities" "goddesses"))
+
+(def lovecraft-gods
+  (retrieve-items ["mythology" "lovecraft"] "deities"))
+
 (def monsters
   (retrieve-items ["mythology" "monsters"] "names"))
 
