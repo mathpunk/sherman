@@ -18,15 +18,17 @@ Library goals:
 
 ## Prerequisites
 
-Node.js should be the only requirement to run the `sherman-server.js` file in the `dist` directory. If you want to build it, you'll also need to install shadow-cljs, with `npm install shadow-cljs --global`. Then run `npm install`, and `shadow-cljs compile app`. 
+* Node.js
+* npm
+* shadow-cljs (`npm install shadow-cljs --global`)
 
 ## Usage
 
-Who **couldn't*** use `Castamir the Usurper's mantle of ubiquitous second chances`, or `an orcish sweater of courage`? Wouldn't `Túrin's regretful cantrip` help you during your day?
+Who **couldn't*** use `Castamir the Usurper's mantle of ubiquitous second chances`, or `an orcish sweater of courage`? Wouldn't `Túrin's regretful cantrip` help you during your day? Don't you sometimes feel like raising your arms to the sky and shouting, `By the forehead of Chaos!`?
 
-### As a service
+### As a web service
 
-Clone the repository and `cd` into it. Run `node dist/sherman-server.js`. This will start a server at `localhost:3000`. You can query it with
+First build the code with `shadow-cljs compile app`. Then run `node dist/sherman-server.js` This will start a server at `localhost:3000`. You can query it with
 
 * `curl localhost:3000/magic/spell` for a magic spell name
 * `curl localhost:3000/magic/item` for a magic item name
@@ -40,7 +42,7 @@ tk
 
 ## Testing
 
-My strategy is to run `shadow watch compile test` to keep an up-to-date test file generated, then in a separate process run chokidar (`npm install chokidar-cli --global`) to watch for changes in that file with `chokidar out/node-tests.js -c 'node out/node-tests.js'`.
+My strategy is to run `shadow-cljs watch compile test` to keep an up-to-date test file generated, then in a separate process run chokidar (`npm install chokidar-cli --global`) to watch for changes in that file with `chokidar out/node-tests.js -c 'node out/node-tests.js'`.
 
 ## TODO
 
