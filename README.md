@@ -1,13 +1,14 @@
 
 # Sherman
 
-Let's play with replacement grammars by wrapping Tracery.js in self-hosted ClojureScript
+Let's play with replacement grammars by wrapping Tracery.js in ClojureScript
 
 ## Goals
 
 Autodidactic goals:
 * Learn about JavaScript interop 
 * Learn about self-hosted ClojureScript
+* Try shadow-cljs as a build tool
 * Experiment with using clojure.spec in code that is mainly or wholly test-driven
 
 Library goals:
