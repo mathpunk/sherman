@@ -2,63 +2,12 @@
   (:require [clojure.string]
             [sherman.corpora :as corpora]))
 
-;; Nice corpora
-;; ---------------------
-;; humans norwayFirstNamesBoys
-;; humans norwayFirstNamesGirls
-;; humans spanishFirstNamesGirls
-;; humans spanishFirstNamesBoys
-;; mythology greek_titans
-;; mythology lovecraft
-;; - deities
-;; mythology greek_gods
-;; mythology norse_gods
-
-;; roles
-;; archetypes character characters
-;; divination tarot_interpretations tarot_interpretations
-;; - keywords
-;; - name (split "/" into two)
-;; - only if suit is "major"
-
-;; qualities
-;; archetypes event events
-;; animals common animals
-;; humans descriptions descriptions
-;; materials layperson-metals
-;; words encouraging_words
-;; words literature lovecraft_words
-
-;; items
-;; materials abridged-body-fluids
-;; mythology greek_monsters + human bodyParts + like, wings and stuff
-;; mythology greek_monsters
-;; mythology monsters
-
-;; plants plants
-;; - instruments (?) name
-;; - adjective wand of #plant#
-;; science minor_planets
-;; science planets
-
-;; words literatore spells, incantation (maybe for wizards)
-
-
 ;; TODO: It's great fun to add things to this, but there's significant duplication of information in this haphazard method. What helpers could be appropriate?
 
 ;; People
 (def wizard-names ["Gandalf" "Zigil" "Zatanna" "Erowid" "Urza" "Glinda" "Rincewind" "Garibaldi" "Slaariel" "Hippolyta"])
 
-(defn clean-name [character-name]
-  (-> character-name
-      (clojure.string/replace #"\(.+\)" "")
-      (clojure.string/trim)))
-
-(def tolkien-names
-  (let [corpus (corpora/load-corpus ["humans" "tolkienCharacterNames"])]
-    (map clean-name (corpus "names"))))
-
-(def wizard {"wizard" (concat wizard-names tolkien-names)})
+(def wizard {"wizard" (concat wizard-names corpora/tolkien-names)})
 (def ethnicity {"ethnicity" ["elvish" "dwarven" "ogrish" "halfling" "orcish" "goblin"]})
 (def profession {"profession" ["fighter" "thief" "rogue" "bard" "druid" "ranger" "wizard" "cleric" "shaman" "warrior" "paladin"]})
 
@@ -67,7 +16,7 @@
 (def clothing {"clothing" ["cape" "shroud" "shawl" "sweater" "cap" "hat" "cloak" "belt" "helm" "mantle"]})
 (def text {"text" ["book" "scroll" "tome" "tablet" "codex"]})
 (def artifacts
-  (let [artifact-maps (get (corpora/load-corpus ["archetypes" "artifact"]) "artifacts")
+  (let [artifact-maps (get (corpora/get-corpus ["archetypes" "artifact"]) "artifacts")
         all-names (fn [artifact] (conj (artifact "synonyms") (artifact "name")))
         artifact-names (mapcat all-names artifact-maps)
         other-artifacts ["wand" "music box"]]
@@ -75,14 +24,14 @@
 (def artefact {"artefact" (concat ["#jewelry#" "#clothing#" "#text#"] artifacts)})
 
 (def fluid
-  (let [corpus (corpora/load-corpus ["materials" "abridged-body-fluids"])
+  (let [corpus (corpora/get-corpus ["materials" "abridged-body-fluids"])
         fluids (get corpus "abridged body fluids")]
     {"fluid" fluids}))
 (def monster
-  (let [monsters (get (corpora/load-corpus ["mythology" "monsters"]) "names")]
+  (let [monsters (get (corpora/get-corpus ["mythology" "monsters"]) "names")]
     {"monster" monsters}))
 (def animal
-  (let [animals (get (corpora/load-corpus ["animals" "common"]) "animals")]
+  (let [animals (get (corpora/get-corpus ["animals" "common"]) "animals")]
     {"animal" animals}
     ))
 
@@ -99,15 +48,15 @@
 
 ;; Qualities
 (def lovecraftian
-  (let [corpus (corpora/load-corpus ["words" "literature" "lovecraft_words"])]
+  (let [corpus (corpora/get-corpus ["words" "literature" "lovecraft_words"])]
     {"lovecraftian" (get corpus "words")}))
 (def adjective {"adjective" ["steely" "stalwart" "crafty" "endless" "subtle" "#lovecraftian#" "#necromantic#" "#illusory#" "creeping" "violent" "ubiquitous" "troubled"]})
 (def description
-  (let [corpus (corpora/load-corpus ["humans" "descriptions"])]
+  (let [corpus (corpora/get-corpus ["humans" "descriptions"])]
     {"description" (get corpus "descriptions")}))
-(def gemstone {"gemstone" ((corpora/load-corpus ["materials" "gemstones"]) "gemstones")})
+(def gemstone {"gemstone" ((corpora/get-corpus ["materials" "gemstones"]) "gemstones")})
 (def metal
-  (let [metals (get (corpora/load-corpus ["materials" "layperson-metals"]) "layperson metals")]
+  (let [metals (get (corpora/get-corpus ["materials" "layperson-metals"]) "layperson metals")]
     {"metal" metals}))
 (def prepared
   {"prepared" ["enchanted" "cursed" "boiled" "steeped" "herbed" "poisoned"]})
@@ -148,34 +97,34 @@
                    ]})
 
 ;; Assembly
-(def magic-rules (merge wizard
-                        description
-                        animal
-                        text
-                        monster
-                        ethnicity
-                        profession
-                        jewelry
-                        clothing
-                        projection
-                        projectile
-                        element
-                        necromantic
-                        charm
-                        illusory
-                        thaumaturgy
-                        adjective
-                        fortune
-                        fate
-                        end
-                        artefact
-                        prepared
-                        lovecraftian
-                        gemstone
-                        fluid
-                        metal
-                        weapon
-                        quality
-                        corpus
-                        spell
-                        item))
+(def rules (merge wizard
+                  description
+                  animal
+                  text
+                  monster
+                  ethnicity
+                  profession
+                  jewelry
+                  clothing
+                  projection
+                  projectile
+                  element
+                  necromantic
+                  charm
+                  illusory
+                  thaumaturgy
+                  adjective
+                  fortune
+                  fate
+                  end
+                  artefact
+                  prepared
+                  lovecraftian
+                  gemstone
+                  fluid
+                  metal
+                  weapon
+                  quality
+                  corpus
+                  spell
+                  item))

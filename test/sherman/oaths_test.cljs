@@ -20,5 +20,5 @@
 
 
 (println "")
-(dotimes [n 5]
+(dotimes [n 20]
   (println (g/trace oaths/rules "oath")))

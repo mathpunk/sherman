@@ -7,11 +7,11 @@
 
 (deftest test-magic-rules
   (do
-    (s/explain :sherman.rules/rules magic/magic-rules)
-    (is (s/valid? :sherman.rules/rules magic/magic-rules))))
+    (s/explain :sherman.rules/rules magic/rules)
+    (is (s/valid? :sherman.rules/rules magic/rules))))
 
 
 (println "")
-(dotimes [n 4]
-  (println (g/trace magic/magic-rules "spell"))
-  (println (g/trace magic/magic-rules "item")))
+(dotimes [n 10]
+  (println (g/trace magic/rules "spell"))
+  (println (g/trace magic/rules "item")))

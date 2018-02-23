@@ -18,12 +18,12 @@
 
 (. app (get "/magic/spell"
             (fn [req res]
-              (send-trace req res magic/magic-rules "spell"))))
+              (send-trace req res magic/rules "spell"))))
 
 
 (. app (get "/magic/item"
             (fn [req res]
-              (send-trace req res magic/magic-rules "item"))))
+              (send-trace req res magic/rules "item"))))
 
 
 (. app (get "/oath"
