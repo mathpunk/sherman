@@ -1,5 +1,6 @@
 (ns sherman.corpora
   (:require [cognitect.transit :as transit]
+            [clojure.string :as string]
             ["fs" :as fs]))
 
 
@@ -31,21 +32,47 @@
 ;; Corpora
 ;; =================
 
-(def planets (-> (retrieve-items ["science" "planets"] "planets")
-                 (join-field "name")))
-(def minor-planets (retrieve-items ["science" "minor_planets"] "minor_planets"))
-
-
-
-(defn clean-name [character-name]
-  (-> character-name
-      (clojure.string/replace #"\(.+\)" "")
-      (clojure.string/trim)))
-
-(def tolkien-names
-  (->> (retrieve-items ["humans" "tolkienCharacterNames"] "names")
-       (map clean-name)))
-
+(def body-fluids
+  (retrieve-items ["materials" "abridged-body-fluids"] "abridged body fluids"))
 
 (def body-parts
   (retrieve-items ["humans" "bodyParts"] "bodyParts"))
+
+(def planets (-> (retrieve-items ["science" "planets"] "planets")
+                 (join-field "name")))
+
+(def minor-planets (retrieve-items ["science" "minor_planets"] "minor_planets"))
+
+(def tolkien-names
+  (let [clean-name (fn [character-name] ;; For getting rid of "(First Age)" etc.
+                     (-> character-name
+                         (string/replace #"\(.+\)" "")
+                         (string/trim)))]
+    (->> (retrieve-items ["humans" "tolkienCharacterNames"] "names")
+         (map clean-name))))
+
+(def monsters
+  (retrieve-items ["mythology" "monsters"] "names"))
+
+(def common-animals
+  (retrieve-items ["animals" "common"] "animals"))
+
+(def lovecraft-words
+  (retrieve-items ["words" "literature" "lovecraft_words"] "words"))
+
+(def human-descriptions
+  (retrieve-items ["humans" "descriptions"] "descriptions"))
+
+(def gemstones
+  (retrieve-items ["materials" "gemstones"] "gemstones"))
+
+(def common-metals
+  (retrieve-items ["materials" "layperson-metals"] "layperson metals"))
+
+(def artefacts
+  ;; This is a more complicated and interesting data set, but for now let's just retrieve the artefacts
+  (let [items (retrieve-items ["archetypes" "artifact"] "artifacts")
+        artefact-names (join-field items "name")
+
+        artefact-synonyms (join-field items "synonyms")]
+    (concat artefact-synonyms artefact-names)))

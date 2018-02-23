@@ -15,25 +15,17 @@
 (def jewelry {"jewelry" ["torque" "bracer" "anklet" "choker" "ring" "pendant" "jewel" "amulet"]})
 (def clothing {"clothing" ["cape" "shroud" "shawl" "sweater" "cap" "hat" "cloak" "belt" "helm" "mantle"]})
 (def text {"text" ["book" "scroll" "tome" "tablet" "codex"]})
-(def artifacts
-  (let [artifact-maps (get (corpora/get-corpus ["archetypes" "artifact"]) "artifacts")
-        all-names (fn [artifact] (conj (artifact "synonyms") (artifact "name")))
-        artifact-names (mapcat all-names artifact-maps)
-        other-artifacts ["wand" "music box"]]
-    (concat (into [] artifact-names) other-artifacts)))
-(def artefact {"artefact" (concat ["#jewelry#" "#clothing#" "#text#"] artifacts)})
 
-(def fluid
-  (let [corpus (corpora/get-corpus ["materials" "abridged-body-fluids"])
-        fluids (get corpus "abridged body fluids")]
-    {"fluid" fluids}))
-(def monster
-  (let [monsters (get (corpora/get-corpus ["mythology" "monsters"]) "names")]
-    {"monster" monsters}))
-(def animal
-  (let [animals (get (corpora/get-corpus ["animals" "common"]) "animals")]
-    {"animal" animals}
-    ))
+(def artefact {"artefact" (concat ["music box" "wand" "#jewelry#" "#clothing#" "#text#"]
+                                  corpora/artefacts)})
+
+
+;; Living things
+(def fluid {"fluid" corpora/body-fluids})
+
+(def monster {"monster" corpora/monsters})
+
+(def animal {"animal" corpora/common-animals})
 
 ;; Magic
 (def projection {"projection" ["#element#" "hail of #projectile#" "rain of #projectile#" "burst of #element#"]})
@@ -47,17 +39,17 @@
 (def thaumaturgy {"thaumaturgy" ["evocation" "thaumaturgy" "invocation" "abjuration" "divination" "channeling" "sorcery" "enchantment" "necromancy" "illusions"]})
 
 ;; Qualities
-(def lovecraftian
-  (let [corpus (corpora/get-corpus ["words" "literature" "lovecraft_words"])]
-    {"lovecraftian" (get corpus "words")}))
+(def lovecraftian {"lovecraftian" corpora/lovecraft-words})
+
 (def adjective {"adjective" ["steely" "stalwart" "crafty" "endless" "subtle" "#lovecraftian#" "#necromantic#" "#illusory#" "creeping" "violent" "ubiquitous" "troubled"]})
+
 (def description
-  (let [corpus (corpora/get-corpus ["humans" "descriptions"])]
-    {"description" (get corpus "descriptions")}))
-(def gemstone {"gemstone" ((corpora/get-corpus ["materials" "gemstones"]) "gemstones")})
-(def metal
-  (let [metals (get (corpora/get-corpus ["materials" "layperson-metals"]) "layperson metals")]
-    {"metal" metals}))
+  {"description" corpora/human-descriptions})
+
+(def gemstone {"gemstone" corpora/gemstones})
+
+(def metal {"metal" corpora/common-metals})
+
 (def prepared
   {"prepared" ["enchanted" "cursed" "boiled" "steeped" "herbed" "poisoned"]})
 
@@ -97,34 +89,36 @@
                    ]})
 
 ;; Assembly
-(def rules (merge wizard
-                  description
-                  animal
-                  text
-                  monster
-                  ethnicity
-                  profession
-                  jewelry
-                  clothing
-                  projection
-                  projectile
-                  element
-                  necromantic
-                  charm
-                  illusory
-                  thaumaturgy
-                  adjective
-                  fortune
-                  fate
-                  end
-                  artefact
-                  prepared
-                  lovecraftian
-                  gemstone
-                  fluid
-                  metal
-                  weapon
-                  quality
-                  corpus
-                  spell
-                  item))
+(def rules (merge
+            adjective
+            animal
+            artefact
+            charm
+            clothing
+            corpus
+            description
+            element
+            end
+            ethnicity
+            fate
+            fluid
+            fortune
+            gemstone
+            illusory
+            item
+            jewelry
+            lovecraftian
+            metal
+            monster
+            necromantic
+            prepared
+            profession
+            projectile
+            projection
+            quality
+            spell
+            text
+            thaumaturgy
+            weapon
+            wizard
+            ))
