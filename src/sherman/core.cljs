@@ -4,7 +4,6 @@
 
 
 (defn -main [& args]
-  (let [rules (merge magic/magic-rules {"spell-or-item" ["#spell#" "#item#"]})
-        ]
+  (let [rules (merge magic/rules {"spell-or-item" ["#spell#" "#item#"]})]
     (dotimes [n 50]
       (println (grammar/trace rules "spell-or-item")))))
